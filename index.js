@@ -5,6 +5,7 @@ const passport = require("passport");
 
 const keys = require("./config/keys");
 require("./models/User"); // make sure this is required before any modules that depend on it
+require("./models/Survey");
 require("./services/passport");
 
 mongoose.connect(keys.mongoUri, { useNewUrlParser: true }).catch(console.error);
@@ -23,6 +24,7 @@ app.use(passport.session());
 
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
+require("./routes/surveyRoutes")(app);
 
 // after routes have been set up
 if (process.env.NODE_ENV === "production") {
